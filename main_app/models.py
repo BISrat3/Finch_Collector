@@ -12,3 +12,19 @@ class Finch(models.Model):
 
     class Meta:
         ordering = ['name']
+
+
+class Review(models.Model):
+    review = models.TextField(max_length=1000)
+    rating = models.IntegerField(default=1)
+
+    def __str__(self):
+        return self.review
+
+
+class Rating(models.Model):
+    review = models.TextField(max_length=1000)
+    rating = models.IntegerField(default=1)
+    finch = models.ForeignKey(Finch, on_delete = models.CASCADE, related_name= "ratings")
+    def __str__(self):
+        return self.review

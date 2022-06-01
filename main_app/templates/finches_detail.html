@@ -1,0 +1,15 @@
+{% extends 'base.html' %} 
+{% block content %}
+<div class="">
+    <img src="{{finch.img}}" alt="{{finch.name}}" />
+    <h1 class="title">{{finch.name}}</h1>
+</div>
+<div>
+   {% for rating in finch.ratings.all %}
+   <span>{{rating.review}}</span>
+   <span>{{rating.rating}}</span>
+</div>
+    {% empty %}
+    <span>No rating to display</span>
+    {% endfor %}
+{% endblock %}

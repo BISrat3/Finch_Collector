@@ -1,11 +1,15 @@
-from .models import Finch
+from re import template
+from .models import Finch, Review, Rating
 # from django import template
 from django.shortcuts import render
 from django.views import View # <- View class to handle requests
 from django.http import HttpResponse # <- a class to handle sending a type of response
 #...
 from django.views.generic.base import TemplateView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic import DetailView
+
+
 # Create your views here.
 
 # Here we will be creating a class called Home and extending it from the View class
@@ -67,3 +71,13 @@ class FinchCreate(CreateView):
     fields = ['name', 'img', 'age']
     template_name = "finches_create.html"
     success_url = "/finches/"
+
+class FinchDetail(DetailView):
+    model = Finch
+    template_name = "finches_detail.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["ratings"] = Rating.objects.all()
+        return context
+        
