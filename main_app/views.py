@@ -5,7 +5,7 @@ from django.views import View # <- View class to handle requests
 from django.http import HttpResponse # <- a class to handle sending a type of response
 #...
 from django.views.generic.base import TemplateView
-
+from django.views.generic.edit import CreateView
 # Create your views here.
 
 # Here we will be creating a class called Home and extending it from the View class
@@ -53,5 +53,17 @@ class FinchList(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["finches"] = Finch.objects.all() # this is where we add the key into our context object for the view to use
+        name = self.request.GET.get("name")
+        if name != None:
+            context["finches"] = Finch.objects.filter(name__icontains=name)
+            context["header"] = f"Searching for {name}"
+        else:
+         context["finches"] = Finch.objects.all() # this is where we add the key into our context object for the view to use
+         context ["header"] = "Finches"
         return context
+
+class FinchCreate(CreateView):
+    model = Finch
+    fields = ['name', 'img', 'age']
+    template_name = "finches_create.html"
+    success_url = "/finches/"

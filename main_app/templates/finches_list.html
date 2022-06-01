@@ -5,7 +5,7 @@
 
 {% block content %}
 
-<h1 class="title"> Finches</h1>
+<h1 class="title"> {{header}}</h1>
 <form class="mb-5" method="get">
   <div class="field has-addons">
     <div class="control">
@@ -19,6 +19,9 @@
   <!--  This anchor tag will redirect back to artist list without a query param -->
   <a class="button is-dark" href="{% url 'finches_list' %}">Clear Search</a>
 </form>
+<div>
+    <a class="button is-dark" href="{% url 'finches_create' %}">Add Finch</a>
+</div>
 <div class="gallery">
   {% for finch in finches %}
   <a href="">
