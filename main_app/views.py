@@ -4,6 +4,7 @@ from .models import Finch, Review, Rating
 from django.shortcuts import render
 from django.views import View # <- View class to handle requests
 from django.http import HttpResponse # <- a class to handle sending a type of response
+from django.urls import reverse
 #...
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import CreateView, UpdateView
@@ -70,7 +71,9 @@ class FinchCreate(CreateView):
     model = Finch
     fields = ['name', 'img', 'age']
     template_name = "finches_create.html"
-    success_url = "/finches/"
+    # success_url = "/finches/"
+    def get_success_url(self):
+        return reverse('finches_detail', kwargs= {'pk': self.object.pk})
 
 class FinchDetail(DetailView):
     model = Finch
@@ -80,4 +83,11 @@ class FinchDetail(DetailView):
         context = super().get_context_data(**kwargs)
         context["ratings"] = Rating.objects.all()
         return context
-        
+
+class FinchUpdate(UpdateView):
+    model = Finch
+    fields = ['name', 'img', 'age']
+    template_name = "finches_update.html"
+    # success_url = "/finches/"
+    def get_success_url(self):
+        return reverse('finches_detail', kwargs= {'pk':self.object.pk})

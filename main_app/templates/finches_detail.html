@@ -4,12 +4,29 @@
     <img src="{{finch.img}}" alt="{{finch.name}}" />
     <h1 class="title">{{finch.name}}</h1>
 </div>
+<div class="detail__container">
+    <div class="buttons">
+        <div class="buttons">
+    <!-- just like how we added the artist detail link we can do the same thing for update -->
+    <a href="{% url 'finches_update' finch.pk %}" class="button is-info"> Updates
+        <span class="icon">
+            <i class="fas fa-edit"></i>
+        </span>
+    </a>
+    <a href="" class="button is-danger">
+        <span class="icon">
+            <i class="fas fa-trash-alt"></i>
+        </span>
+    </a>
+</div>
 <div>
    {% for rating in finch.ratings.all %}
    <span>{{rating.review}}</span>
    <span>{{rating.rating}}</span>
 </div>
+
     {% empty %}
     <span>No rating to display</span>
+
     {% endfor %}
 {% endblock %}
