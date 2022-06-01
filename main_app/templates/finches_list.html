@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% comment %} for head title tags and helping us with SEO {% endcomment %}
+{% block title %}Finch{% endblock  %}
+
+{% block content %}
+
+<h4 class="title h4 pt-5">Finches</h4>
+<div class="gallery">
+  {% for finch in finches %}
+  <a href="">
+    <div class="card">
+      <div class="card-image">
+        <figure class="image is-square">
+          <img src="{{finch.image}}" alt="{{finch.name}}" />
+        </figure>
+      </div>
+      <div class="card-header">
+        <p class="card-header-title">{{finch.name}}</p>
+      </div>
+    </div>
+  </a>
+	{% empty %}
+  <article class="message">
+    <div class="message-header">
+      <p>No finches Available</p>
+    </div>
+  </article>
+  {% endfor %}
+</div>
+{% endblock %}
