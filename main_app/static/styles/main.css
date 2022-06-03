@@ -7,13 +7,17 @@ body {
 h1,
 h2,
 h3 {
-    color: #ffffff;
+    color:red;
 }
 
 .title {
-    color: #ffffff;
+    color: green;
 }
 
+.header {
+    color:yellow;
+    padding-left: 20px;
+}
 
 .gallery {
     display: grid;
@@ -29,6 +33,10 @@ h3 {
 .gallery .card:hover {
     transform: scale(1.1);
     z-index: 10;
+}
+
+.Create_form{
+    background-color: yellow;
 }
 
 p {
@@ -99,14 +107,14 @@ img {
     /*  New Template Columns  */
     grid-template-columns: 0.1fr 3fr 0.5fr 0.3fr;
     border-radius: 5px;
-    color: white;
+    color:red;
   }
 
   span{
-      color: white;
-      background-color: aqua;
+      color:mediumblue;
+      background-color:chartreuse;
   }
 
   span h4{
-      color: whitesmoke;
+      color: crimson;
   }
