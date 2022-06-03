@@ -1,15 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Finch</title>
-    </head>
-    <body>
-        {% extends 'base.html'%}
-        {% block content %}
-        <h1>Finch Home</h1>
-        {% endblock %}
-    </body>
-</html>
+{% extends 'base.html' %} 
+{% block content %}
+{% for birdlist in birdlists %}
+<div class="home__birdlists">
+
+        <div class="birdlist mb-5">
+            <h3 class="title is-3 has-text-success">{{birdlist.name}}</h3>
+            <hr />
+
+            {% for finch in birdlist.finches.all %}
+
+                <div class="bird">
+                    <span>{{forloop.counter}}</span>
+                    <span><h4>{{finch.name}}</h4></span>
+                
+                </div>
+
+            {% endfor %}
+        </div>
+    {% empty %} 
+        <div class="birdlist mb-5">"There are no finches in this birdlist"</div>
+    {% endfor %}
+</div>
+{% endblock %}
