@@ -1,22 +1,37 @@
 {% extends 'base.html' %} 
 {% block content %}
-{% for birdlist in birdlists %}
+<!-- {% for birdlist in birdlists %} -->
 <div class="home__birdlists">
 
         <div class="birdlist mb-5">
             <h3 class="title is-3 has-text-success">{{birdlist.name}}</h3>
             <hr />
 
-            {% for finch in birdlist.finches.all %}
+            <!-- {% for finch in birdlist.finches.all %} -->
+
+                <!--  <div class="bird">
+                    <span>{{forloop.counter}}</span>
+                    <span><h4>{{finch.name}}</h4></span>
+                
+                </div> -->
 
                 <div class="bird">
                     <span>{{forloop.counter}}</span>
                     <span><h4>{{finch.name}}</h4></span>
-                
+                    <span>
+                         <!-- Here we are creating an anchor
+                        tag that when clicked will hit our new
+                        route and send a query to remove the song     --> 
+                        <a href="{% url 'birdlist_finch_assoc' birdlist.pk finch.pk %}?assoc=remove" class="button is-danger is-outlined">
+                        <span class="icon is-small">
+                            <i class="fas fa-times"></i>
+                        </span>
+                        </a>
+                    </span>
                 </div>
-
             {% endfor %}
-        </div>
+        </div> 
+
     {% empty %} 
         <div class="birdlist mb-5">"There are no finches in this birdlist"</div>
     {% endfor %}

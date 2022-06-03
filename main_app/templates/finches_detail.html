@@ -1,76 +1,77 @@
 {% extends 'base.html' %} 
 {% block content %}
-<div class="">
-    <img src="{{finch.img}}" alt="{{finch.name}}" />
-    <h1 class="title">{{finch.name}}</h1>
-</div>
-<form class="mb-5" action="{% url 'rating_create' finch.pk %}" method="post">
-    {% csrf_token %}
-    <div class="field has-addons">
-        <div class="control">
-            <input
-                class="input"
-                type="text"
-                name="Name"
-                placeholder="Name"
-                required
-            />
-        </div>
-        <div class="control">
-            <input
-                class="input"
-                type="number"
-                name="review"
-                placeholder="reviews"
-                min="1"
-                max="5"
-                required
-            />
-        </div>
-        <div class="control">
-            <input class="button is-primary" type="submit" value="Add Rating" />
-        </div>
-    </div>
-</form>
-
-<div class="detail__container">
-    <div class="buttons">
+<h1 class="title">{{finch.name}}</h1>
+<img src="{{finch.img}}" alt="{{finch.name}}" />
+<div class="detail__container buttons_container">
         <div class="buttons">
-    <!-- just like how we added the artist detail link we can do the same thing for update -->
-    <a href="{% url 'finches_update' finch.pk %}" class="button is-info"> Updates
-        <span class="icon">
-            <i class="fas fa-edit"></i>
-        </span>
-    </a>
-    <a href="" class="button is-danger">
-        <span class="icon">
-            <i class="fas fa-trash-alt"></i>
-        </span>
-    </a>
+            <div class="buttons">
+        <!-- just like how we added the artist detail link we can do the same thing for update -->
+        <a href="{% url 'finches_update' finch.pk %}" class="button is-info"> Updates
+            <span class="icon">
+                <i class="fas fa-edit"></i>
+            </span>
+        </a>
+        <a href="{% url 'finches_delete' finch.pk %}" class="button is-danger">Delete
+            <span class="icon">
+                <i class="fas fa-trash-alt"></i>
+            </span>
+        </a>
+    </div>
+</div>
+    <h1 class="title">Ratings</h1>
+<div class="add_Rating">
+    <form class="mb-5" action="{% url 'rating_create' finch.pk %}" method="post">
+        {% csrf_token %}
+        <div class="field has-addons">
+            <div class="control">
+                <input
+                    class="input"
+                    type="text"
+                    name="review"
+                    placeholder="review"
+                    required
+                />
+            </div>
+            <div class="control">
+                <input
+                    class="input"
+                    type="number"
+                    name="rating"
+                    placeholder="rating"
+                    min="1"
+                    max="5"
+                    required
+                    />
+                </div>
+                <div class="control">
+                    <input class="button is-primary" type="submit" value="Add Rating" />
+                </div>
+            </div>
+        </form>
 </div>
 
-<div>
+    
+<!-- <div class="delete">
     <a href="{% url 'finches_delete' finch.pk %}" class="button is-danger">Delete
         <span class="icon">
             <i class="fas fa-trash-alt"></i>
         </span>
     </a>
-</div>
-
+</div> -->
 <div class="detail__reviews mb-5">
     <h3 class="title is-3">Reviews</h3>
-    <div class="review">
+    <div class="review review_pages">
    {% for rating in finch.ratings.all %}
-   <span>{{rating.review}}</span>
    <span>{{rating.rating}}</span>
+   <span>{{rating.review}}</span>
 </div>
+
     {% empty %}
     <article class="message">
         <div class="message-header">
-    <span>No rating to display</span>
+    <span class="reviews_list">No Reviews to display</span>
         </div>
     </article>
-
     {% endfor %}
 </div>
 {% endblock %}
