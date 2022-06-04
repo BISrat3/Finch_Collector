@@ -10,9 +10,6 @@
                     <span>{{forloop.counter}}</span>
                     <span><h4>{{finch.name}}</h4></span>
                     <span>
-                         <!-- Here we are creating an anchor
-                        tag that when clicked will hit our new
-                        route and send a query to remove the song     --> 
                         <a href="{% url 'birdlist_finch_assoc' birdlist.pk finch.pk %}?assoc=remove" class="button is-danger is-outlined">
                         <span class="icon is-small">
                             <i class="fas fa-times"></i>

@@ -1,9 +1,8 @@
 from django.shortcuts import redirect, render
 from re import template
 from .models import Finch, Review, Rating, BirdList
-# from django import template
-from django.views import View # <- View class to handle requests
-from django.http import HttpResponse # <- a class to handle sending a type of response
+from django.views import View 
+from django.http import HttpResponse 
 from django.urls import reverse
 #...
 from django.views.generic.base import TemplateView
@@ -17,8 +16,6 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
 
-# Create your views here.
-# Here we will be creating a class called Home and extending it from the View class
 class Home(TemplateView):
         template_name ="home.html"
 
@@ -41,7 +38,7 @@ class FinchList(TemplateView):
             context["finches"] = Finch.objects.filter(name__icontains=name, user= self.request.user)
             context["header"] = f"Searching for {name}"
         else:
-         context["finches"] = Finch.objects.filter(user = self.request.user) # this is where we add the key into our context object for the view to use
+         context["finches"] = Finch.objects.filter(user = self.request.user) 
          context ["header"] = "Finches"
         return context
 
@@ -70,7 +67,6 @@ class FinchUpdate(UpdateView):
     model = Finch
     fields = ['name', 'img', 'age']
     template_name = "finches_update.html"
-    # success_url = "/finches/"
     def get_success_url(self):
         return reverse('finches_detail', kwargs= {'pk':self.object.pk})
 
@@ -91,25 +87,18 @@ class RatingCreate(View):
 class BirdListFinchAssoc(View):
 
     def get(self, request, pk, finch_pk):
-        # get the query param from the url
         assoc = request.GET.get("assoc")
         if assoc == "remove":
-            # get the playlist by the id and
-            # remove from the join table the given song_id
             BirdList.objects.get(pk=pk).finches.remove(finch_pk)
         if assoc == "add":
-            # get the playlist by the id and
-            # add to the join table the given song_id
             BirdList.objects.get(pk=pk).finches.add(finch_pk)
         return redirect('home')
 
 class Signup(View):
-    # show a form to fill out
     def get(self, request):
         form = UserCreationForm()
         context = {"form": form}
         return render(request, "registration/signup.html", context)
-    # on form submit validate the form and login the user.
     def post(self, request):
         form = UserCreationForm(request.POST)
         if form.is_valid():

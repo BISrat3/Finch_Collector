@@ -16,8 +16,6 @@
     <div class="dropdown-menu" id="dropdown-menu" role="menu">
         <div class="dropdown-content">
           {% for birdlist in birdlists %}
-      <!-- each playlist becomes a drop
-      down item with the ids needed to add to the join table  -->
             <a href="{% url 'birdlist_finch_assoc' birdlist.pk finch.pk %}?assoc=add"
             class="dropdown-item">
             {{birdlist.name}}
@@ -32,7 +30,6 @@
 <div class="detailimg">
     <img src="{{finch.img}}" alt="{{finch.name}}" />
 </div>
-
 <br />
 
 <a href="{% url 'finches_update' finch.pk %}" class="button is-info span_btn">

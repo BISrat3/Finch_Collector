@@ -4,11 +4,8 @@
     <h1 class="header">Add New Finch</h1>
 <br />
 <form method="post" class="Create_form">
-<!-- Security Feature  -->
   {% csrf_token %} 
-<!--  Generate inputs  -->
   {{form.as_p}} 
-<!--  Submit form  -->
   <input type="submit" value="Submit"  class="submit"/>
 </form>
 
