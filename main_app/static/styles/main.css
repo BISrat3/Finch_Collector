@@ -10,16 +10,31 @@ h3 {
 }
 
 .title {
-    background-color: green;
+    color: green;
     width: 50%;
     color: yellow;
     margin: 20px 20px;
     padding-top: 5PX;
 }
 
+.rating_input{
+    width:100px;
+}
+
+
 .header {
+    margin: 20px 20px;
+    padding-top: 5PX;
     color:yellow;
     padding-left: 20px;
+    font-size: 30px;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+.reviews_h3{
+    color:yellow;
+    padding-left: 20px;
+    font-size: 30px;
 }
 
 .gallery {
@@ -33,16 +48,22 @@ h3 {
     transition: .1s linear;
 }
 
+
+
 .gallery .card:hover {
     transform: scale(1.1);
     z-index: 10;
 }
 
+/* .search_image{
+    width: 200px;
+} */
+
 .Create_form{
     background-color:cornflowerblue;
     padding-left: 40px;
     color:black;
-    max-width: 40%;
+    max-width: 50%;
 }
 
 p {
@@ -103,6 +124,9 @@ img {
     margin-top: 10px;
 }
 
+form{
+    margin-left: 20px;
+}
 .review {
     width: 100%;
     padding: 10px;
@@ -111,19 +135,31 @@ img {
     border-radius: 5px;
 }
 
-.add_Rating{
+.add_Rating {
     margin-top: 10px;
     padding: 20px;
 }
 
-.review:hover {
-    background-color: hsla(155, 80%, 32%, 0.553);
-    cursor: pointer;
+.icon_btn{
+    width: 40px;
 }
 
-.review_pages{
-    background-color: #ffffff;
+.a_tag{
+    background-color:lightskyblue;
 }
+
+.detail_form{
+    margin-left: -5px;
+}
+
+/* .review:hover {
+    background-color: hsla(155, 80%, 32%, 0.553);
+    cursor: pointer;
+} */
+
+/* .review_pages{
+    background-color: #ffffff;
+} */
 .bird {
     width: 100%;
     padding: 10px;
@@ -134,15 +170,86 @@ img {
     color:red;
   }
 
-  span{
-      color:mediumblue;
-      background-color:chartreuse;
+span{
+    color:mediumblue;
+    background-color:lightskyblue;
+}
+
+span h4{
+    color: crimson;
+}
+
+.reviews_list{
+    background-color: white;
   }
 
-  span h4{
-      color: crimson;
+i {
+    background-color: white;
   }
 
-  .reviews_list{
-      width: 100px;
-  }
+.btn, p{
+    color: #121212;
+    font-size: 20px;
+}
+
+.span_background{
+    color: white;
+    background-color: black;
+    margin-left: 20px;
+}
+
+.add_finch{
+    margin-bottom: 10px;
+    margin-left: 20px;
+}
+/* .span_btn{
+    width: 40px;
+    margin-left: 20px;
+} */
+
+.span_btn{
+    margin-left: 20px;
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+.form_login{
+    margin-right: 10px;
+    padding-right: 10px;
+}
+
+.btn{
+    width: 150px;
+    background-color: lightgreen;
+    
+}
+
+.welcome{
+    margin-right: 20px;
+}
+
+.signup{
+    margin-top: 10px;
+    margin-left: 50px;
+    margin-bottom: 10px;
+}
+.add_bird{
+    margin-left: -13px;
+    margin-top: 8px;
+    background-color: #ffffff;
+
+}
+.detailimg{
+    max-width: 420px;
+    margin-left: 20px;
+    border-radius: 5px solid green;
+}
+
+.submit{
+    
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    margin-left: 50px;
+    margin-bottom: 10px;
+}

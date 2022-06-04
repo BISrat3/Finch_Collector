@@ -1,77 +1,87 @@
 {% extends 'base.html' %} 
 {% block content %}
-<h1 class="title">{{finch.name}}</h1>
-<img src="{{finch.img}}" alt="{{finch.name}}" />
-<div class="detail__container buttons_container">
-        <div class="buttons">
-            <div class="buttons">
-        <!-- just like how we added the artist detail link we can do the same thing for update -->
-        <a href="{% url 'finches_update' finch.pk %}" class="button is-info"> Updates
-            <span class="icon">
-                <i class="fas fa-edit"></i>
-            </span>
-        </a>
-        <a href="{% url 'finches_delete' finch.pk %}" class="button is-danger">Delete
-            <span class="icon">
-                <i class="fas fa-trash-alt"></i>
-            </span>
-        </a>
+<h1 class="header">{{finch.name}}</h1>
+
+<span class="span_btn">
+    <div class="dropdown">
+        <div class="dropdown-trigger">
+            <button class="button btn" aria-haspopup="true"
+            aria-controls="dropdown-menu">
+                <p >Add to Birdlist </p>
+                <span class="icon is-small add_bird ">
+                <i class="fas fa-angle-down drop" aria-hidden="true"></i>
+                </span>
+            </button>
     </div>
+    <div class="dropdown-menu" id="dropdown-menu" role="menu">
+        <div class="dropdown-content">
+          {% for birdlist in birdlists %}
+      <!-- each playlist becomes a drop
+      down item with the ids needed to add to the join table  -->
+            <a href="{% url 'birdlist_finch_assoc' birdlist.pk finch.pk %}?assoc=add"
+            class="dropdown-item">
+            {{birdlist.name}}
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+    </div>
+    <br />
+    <br />
+</span>
+<div class="detailimg">
+    <img src="{{finch.img}}" alt="{{finch.name}}" />
 </div>
-    <h1 class="title">Ratings</h1>
+
+<br />
+
+<a href="{% url 'finches_update' finch.pk %}" class="button is-info span_btn">
+    <span class="icon icon_btn">
+        <i class="fas fa-edit"></i>
+    </span>
+</a>
+<a href="{% url 'finches_delete' finch.pk %}" class="button is-danger span_btn">
+    <span class="icon">
+        <i class="fas fa-trash-alt"></i>
+    </span>
+</a>
 <div class="add_Rating">
-    <form class="mb-5" action="{% url 'rating_create' finch.pk %}" method="post">
+    <form class="mb-5 detail_form" action="{% url 'rating_create' finch.pk %}" method="post">
         {% csrf_token %}
         <div class="field has-addons">
             <div class="control">
-                <input
-                    class="input"
-                    type="text"
-                    name="review"
-                    placeholder="review"
-                    required
+                <input class="input" type="text" name="review" placeholder="review" required
                 />
             </div>
-            <div class="control">
-                <input
-                    class="input"
-                    type="number"
-                    name="rating"
-                    placeholder="rating"
-                    min="1"
-                    max="5"
-                    required
-                    />
-                </div>
-                <div class="control">
-                    <input class="button is-primary" type="submit" value="Add Rating" />
-                </div>
+            <div class="control rating_input">
+                <input class="input" type="number" name="rating" placeholder="rating" min="1" max="5" 
+                required />
             </div>
-        </form>
-</div>
-
-    
-<!-- <div class="delete">
-    <a href="{% url 'finches_delete' finch.pk %}" class="button is-danger">Delete
-        <span class="icon">
-            <i class="fas fa-trash-alt"></i>
-        </span>
-    </a>
-</div> -->
-<div class="detail__reviews mb-5">
-    <h3 class="title is-3">Reviews</h3>
-    <div class="review review_pages">
-   {% for rating in finch.ratings.all %}
-   <span>{{rating.rating}}</span>
-   <span>{{rating.review}}</span>
-</div>
-
-    {% empty %}
-    <article class="message">
-        <div class="message-header">
-    <span class="reviews_list">No Reviews to display</span>
+            <div class="control">
+                <input class="button is-primary" type="submit" value="Add Reviews" />
+            </div>
         </div>
-    </article>
-    {% endfor %}
+    </form>
 </div>
+
+</div>
+<div class="detail__reviews mb-5"> 
+    <h3 class="reviews_h3 is-3">Reviews</h3>
+    <hr/>
+    {% for rating in finch.ratings.all %}
+    <div class="span_background">
+        <span class="span_background">{{forloop.counter}}.</span>
+        <span class="span_background"> {{rating.review}}</span> <br/>
+        <span class="span_background"> Rating: {{rating.rating}}</span>
+    </div>
+</div>
+    
+    {% empty %}
+<article class="message">
+    <div class="message-header">
+        <span class="">No Reviews to display</span>
+    </div>
+</article>
+{% endfor %}
+
 {% endblock %}

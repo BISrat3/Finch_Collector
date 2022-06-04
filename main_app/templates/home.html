@@ -1,20 +1,11 @@
 {% extends 'base.html' %} 
 {% block content %}
-<!-- {% for birdlist in birdlists %} -->
 <div class="home__birdlists">
-
+    {% for birdlist in birdlists %}
         <div class="birdlist mb-5">
             <h3 class="title is-3 has-text-success">{{birdlist.name}}</h3>
             <hr />
-
-            <!-- {% for finch in birdlist.finches.all %} -->
-
-                <!--  <div class="bird">
-                    <span>{{forloop.counter}}</span>
-                    <span><h4>{{finch.name}}</h4></span>
-                
-                </div> -->
-
+            {% for finch in birdlist.finches.all %}
                 <div class="bird">
                     <span>{{forloop.counter}}</span>
                     <span><h4>{{finch.name}}</h4></span>
@@ -31,7 +22,6 @@
                 </div>
             {% endfor %}
         </div> 
-
     {% empty %} 
         <div class="birdlist mb-5">"There are no finches in this birdlist"</div>
     {% endfor %}
