@@ -18,7 +18,6 @@ from django.utils.decorators import method_decorator
 
 
 # Create your views here.
-
 # Here we will be creating a class called Home and extending it from the View class
 class Home(TemplateView):
         template_name ="home.html"
@@ -27,10 +26,6 @@ class Home(TemplateView):
             context = super().get_context_data(**kwargs)
             context["birdlists"] = BirdList.objects.all()
             return context
-    # Here we are adding a method that will be ran when we are dealing with a GET request
-    # def get(self, request):
-        # Here we are returning a generic response
-        # This is similar to response.send() in express
 
 class About(TemplateView):
         template_name ="about.html"
