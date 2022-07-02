@@ -24,8 +24,8 @@ class Home(TemplateView):
             context["birdlists"] = BirdList.objects.all()
             return context
 
-class About(TemplateView):
-        template_name ="about.html"
+# class About(TemplateView):
+#         template_name ="about.html"
 
 @method_decorator(login_required, name='dispatch')
 class FinchList(TemplateView):
