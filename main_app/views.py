@@ -46,7 +46,6 @@ class FinchCreate(CreateView):
     model = Finch
     fields = ['name', 'img', 'age']
     template_name = "finches_create.html"
-    # success_url = "/finches/"
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super(FinchCreate, self).form_valid(form)
